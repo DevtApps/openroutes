@@ -4,8 +4,8 @@ ENV MAVEN_OPTS="-Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.o
 ENV MAVEN_CLI_OPTS="--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
 
 ARG ORS_CONFIG=./openrouteservice/src/main/resources/ors-config-sample.json
-ARG OSM_FILE=./openrouteservice/src/main/files/heidelberg.osm.gz
-ENV BUILD_GRAPHS="False"
+ARG OSM_FILE=./docker/nordeste.pbf
+ENV BUILD_GRAPHS="True"
 ARG UID=1000
 ARG TOMCAT_VERSION=8.5.69
 
@@ -27,6 +27,7 @@ WORKDIR /ors-core
 
 COPY --chown=ors:ors openrouteservice /ors-core/openrouteservice
 COPY --chown=ors:ors $OSM_FILE /ors-core/data/osm_file.pbf
+
 COPY --chown=ors:ors $ORS_CONFIG /ors-core/openrouteservice/src/main/resources/ors-config-sample.json
 COPY --chown=ors:ors ./docker-entrypoint.sh /ors-core/docker-entrypoint.sh
 

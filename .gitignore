@@ -25,10 +25,12 @@ openrouteservice/src/main/resources/ors-config*
 
 # Ignore folders generated from docker
 docker/elevation_cache
-docker/conf
+docker/data
+
 
 # Ignore ors.run file
 *ors.run
+*.pbf
 
 cgiar_provider/
 graphs/
